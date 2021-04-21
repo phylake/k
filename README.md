@@ -37,12 +37,13 @@ Utilities
 - [mux](#mux)
 - [rex](#rex)
 - [numstats](#numstats)
+- [uniq](#uniq)
 - [count](#count)
 - [set](#set)
 
 ### mux
 
-Multiplex `exec` command output across Pods onto `stdout`
+Multiplex `exec` command output across Pods onto stdout
 
 Usage: `k mux exec <command>`
 
@@ -150,9 +151,30 @@ count: 151
   min: 523
 ```
 
+### uniq
+
+Print unique values from stdin
+
+```bash
+$ echo 'one\ntwo\ntwo\nthree\nthree\nthree'
+one
+two
+two
+three
+three
+three
+```
+
+```bash
+$ echo 'one\ntwo\ntwo\nthree\nthree\nthree' | k uniq
+one
+two
+three
+```
+
 ### count
 
-Count stdin and sort in descending order
+Similar to `uniq` but count stdin and sort in descending order
 
 Usage: `k count`
 
