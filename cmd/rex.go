@@ -56,8 +56,7 @@ func rex() {
 	for scanner.Scan() {
 		matches := re.FindStringSubmatch(scanner.Text())
 		if matches == nil {
-			fmt.Fprintln(os.Stderr, "no match")
-			os.Exit(1)
+			continue
 		}
 
 		for i, ival := range indices {
