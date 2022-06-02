@@ -40,6 +40,7 @@ Utilities
 - [uniq](#uniq)
 - [count](#count)
 - [set](#set)
+- [time](#time)
 
 ### mux
 
@@ -230,6 +231,41 @@ c
 d
 e
 ```
+
+### time
+
+Time deltas from now or a RFC 3339 provided time
+
+No arguments prints usage and the current local time which is convenient to then
+copy and alter as the second argument (see below)
+
+```bash
+$ k time
+USAGE: time <duration string> [2022-06-02T15:04:37-06:00]
+```
+
+Replace the `-06:00` with `Z` to get UTC
+
+If the current date and time was `2022-01-01T00:00:00Z` then this would add an
+hour to it
+
+```bash
+$ k time 1h
+2022-01-01T01:00:00Z
+```
+
+If the current data and time is no longer `2022-01-01T00:00:00Z` but you want to
+calculate time deltas from then you can pass it as the second argument. Negative
+durations can also be used
+
+```bash
+$ k time -1h 2022-01-01T00:00:00Z
+2021-12-31T23:00:00Z
+```
+
+The available units for the duration are described in [`time.ParseDuration`](https://pkg.go.dev/time@go1.18.2#ParseDuration)
+
+Notably `d` for day is missing which is often inconvenient
 
 Extensibility
 -------------
